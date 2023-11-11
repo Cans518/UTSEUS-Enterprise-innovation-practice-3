@@ -16,17 +16,17 @@ def compress_video(input_file, output_file):
   frame_rate = "-r 12"
   # 去掉声音。
   audio_disable = "-an"
-
+  
+  # 视频压缩命令
   command = f"ffmpeg -i {input_file} {resolution} {video_bitrate} {total_bitrate} {frame_rate} {audio_disable} {output_file}  -hwaccel nvenc -c:v h264_nvenc -preset ultrafast -y  "
 
   print("开始压缩视频...")
-  print(command)
+  # 执行视频压缩命令
   subprocess.call(command, shell=True)
   print("视频压缩完成。")
 
 if __name__ == "__main__":
+  # 获取视频文件路径,路径来自于命令行参数
   file_path = sys.argv[1]
-  print(file_path)
   output_file = "temp/output.mp4"
-
   compress_video(file_path, output_file)

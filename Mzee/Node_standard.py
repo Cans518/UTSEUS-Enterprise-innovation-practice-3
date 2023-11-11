@@ -28,6 +28,7 @@ else:
     cap = cv2.VideoCapture(file_path)
 
     # 定义血肉颜色的HSV范围，浅粉色到肉色到红色
+    # 这里的范围定义较广
     lower_red = np.array([160, 100, 100])
     upper_red = np.array([179, 255, 255])
 
@@ -58,6 +59,7 @@ else:
             if red_detected:
                 red_detected = False
                 end_time = cap.get(cv2.CAP_PROP_POS_MSEC) / 1000.0
+                # 确保粗识别时的每一个时间段都在30s以上，并且不在无效时长内
                 if end_time - start_time > 30 and start_time > invalid_time:
                     red_time_periods.append((start_time, end_time))
 
