@@ -17,7 +17,7 @@ def compress_video(input_file, output_file):
   # 去掉声音。
   audio_disable = "-an"
 
-  command = f"ffmpeg -i {input_file} {resolution} {video_bitrate} {total_bitrate} {frame_rate} {audio_disable} {output_file} -c:v libx265 -hwaccel nvdec "
+  command = f"ffmpeg -i {input_file} {resolution} {video_bitrate} {total_bitrate} {frame_rate} {audio_disable} {output_file}  -hwaccel nvenc -c:v h264_nvenc -preset ultrafast -y  "
 
   print("开始压缩视频...")
   print(command)
