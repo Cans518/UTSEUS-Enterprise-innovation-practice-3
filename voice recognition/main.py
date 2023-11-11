@@ -6,11 +6,11 @@ import requests
 url = "https://nls-gateway.cn-shanghai.aliyuncs.com"
 
 # 请替换成您的AccessKey ID和AccessKey Secret
-access_key_id = "LTAI5t5t1vQDdMtfN4hEvksH"
-access_key_secret = "RQAzeQAjYIOPFThEod8ln8nWcTeJhU"
+access_key_id = ""
+access_key_secret = ""
 
 # 请替换成您的API密钥
-api_key = "yCXaSwckNSwVWzdW"
+api_key = ""
 
 # 请替换成您的音频文件路径
 audio_file = "output.mp3"
