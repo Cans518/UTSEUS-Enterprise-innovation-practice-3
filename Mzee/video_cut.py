@@ -32,7 +32,7 @@ output_pic_dir = "output/pictures"
 def cut_video(input_file, segments):
     i = 1
     for start_time, end_time in segments:
-        output_file = f"output/cut{i}.mp4"
+        output_file = f"output/video/cut{i}.mp4"
         i += 1
         command = f"ffmpeg -ss {start_time} -t {end_time - start_time} -i {input_file} -c copy {output_file} -y"
         subprocess.call(command, shell=True)

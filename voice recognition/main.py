@@ -5,17 +5,17 @@ import requests
 
 url = "https://nls-gateway.cn-shanghai.aliyuncs.com"
 
-# 请替换成您的AccessKey ID和AccessKey Secret
+# AccessKey ID和AccessKey Secret
 access_key_id = ""
 access_key_secret = ""
 
-# 请替换成您的API密钥
+# API密钥
 api_key = ""
 
-# 请替换成您的音频文件路径
+# 音频文件路径
 audio_file = "output.mp3"
 
-# 请替换成您的语音识别结果保存路径
+# 语音识别结果保存路径
 result_file = "output.srt"
 
 # 生成API请求参数

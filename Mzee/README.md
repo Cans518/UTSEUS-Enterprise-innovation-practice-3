@@ -69,13 +69,28 @@
 - 视频压制命令：
 
 ```shell
-ffmpeg -i file_path -vf scale=240:160,fps=12 -b:v 500k -r 12 -an -strict -1 -y 
+ffmpeg -i {input_file} {resolution} {video_bitrate} {total_bitrate} {frame_rate} {audio_disable} {output_file}  -hwaccel nvenc -c:v h264_nvenc -preset ultrafast -y  
+```
+
+
+
+```txt
+  # 设置视频分辨率为 240×160。
+  resolution = "-vf scale=240:160"
+  # 设置视频数据速率为 58kbps。
+  video_bitrate = "-b:v 58k"
+  # 设置视频总比特率为 250kbps。
+  total_bitrate = "-b:a 250k"
+  # 设置视频帧数为 12 帧。
+  frame_rate = "-r 12"
+  # 去掉声音。
+  audio_disable = "-an"
 ```
 
 - 视频片段剪辑命令：
 
 ```shell
-ffmpeg -ss start_time -i input_video -to end_time -c:v libx264 -c:a aac output_file
+ffmpeg -ss {start_time} -t {end_time - start_time} -i {input_file} -c copy {output_file} -y
 ```
 
 
@@ -99,35 +114,36 @@ ffmpeg -ss start_time -i input_video -to end_time -c:v libx264 -c:a aac output_f
 5. 利用缓存文件进行剪辑。
 
 
-## 项目进度
 
-### 目前进度
+## 识别算法逻辑
 
-- 视频的预处理
-- 视频的压制与片段的剪辑
-- 视频的识别与剪辑
-
-### 粗略进度
-
-### 进一步计划
-
-### 最终可行方案
-
-### 目前完成
-
-- 视频的预处理
-- 视频的压制与片段的剪辑
-
-### 粗略完成
-
-### 进一步计划
-
-### 最终可行方案
+- 根据需要识别的视频的特征，我们需要将正在进行手术的视频提取出来。
+  - 通俗来讲我们一般认为出现大面积的血肉的地方就是需要进行手术的地方。
+  - 我们可以利用`OpenCV`库来进行视频的识别，通过`OpenCV`库的`HSV`颜色空间来进行颜色的识别。
+  - 我们可以将视频分为若干个区域，然后对每个区域进行颜色的识别，如果颜色的识别结果符合我们设定的阈值，那么我们就认为这个区域是需要进行手术的区域。
+- 在识别完成后将对应的秒数存入缓存文件中。
+- 利用缓存文件进行剪辑。
 
 
+## 项目结构
 
+```python
+.
+├── temp/cat_time.in
+├── temp/cat_time_fact.in
+├── temp/output.mp4
+├── output/picture
+├── output/video
+├── Run.py
+├── Node_standard.py
+├── preprocessing.py
+├── video_cut.py
+├── Run.bat
+└── README.md
+```
+- `temp`文件夹是用来存放临时文件，其中`cat_time.in`是用来存放需要识别的时间段的缓存文件，`cat_time_fact.in`是用来存放需要剪辑的时间段的缓存文件，`output.mp4`是用来存放剪辑后的视频文件。
+- `output`文件夹是用来存放剪辑后的图片和视频文件。
+- `Run.py`是UI实现的程序，`Node_standard.py`是用来进行视频的识别，`preprocessing.py`是用来进行视频的压缩，`video_cut.py`是用来进行视频的剪辑。
+- `Run.bat`是Windows平台下运行的批处理文件。
+- `README.md`是本项目的说明文档。
 
-
-
-
-​	
