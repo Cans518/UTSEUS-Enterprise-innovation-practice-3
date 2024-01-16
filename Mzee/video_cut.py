@@ -38,8 +38,8 @@ def cut_video(input_file, segments):
         subprocess.call(command, shell=True)
 
 if __name__ == "__main__":
-    # input_file = sys.argv[1]
-    input_file = "temp/output.mp4"
+    input_file = sys.argv[1]
+    # input_file = "temp/output.mp4"
     info_file_path = "temp/cat_time.in"
     segments = []
     with open(info_file_path, "r") as info_file:
